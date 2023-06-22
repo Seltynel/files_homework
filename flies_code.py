@@ -1,3 +1,4 @@
+# Задание 1
 from pprint import pprint
 
 with open('recipes.txt', 'rt', encoding= 'UTF-8') as file:
@@ -16,4 +17,20 @@ with open('recipes.txt', 'rt', encoding= 'UTF-8') as file:
         file.readline()
         cook_book[dish_name] = ingredients
 
-pprint(cook_book, sort_dicts=False)
+# pprint(cook_book, sort_dicts=False)
+
+# Задание 2
+def get_shop_list_by_dishes(dishes, person_count):
+    for element in dishes:
+        if element in cook_book:
+            for dish in cook_book[element]:
+                persons = int(dish['quantity']) * person_count
+                result = {
+                    dish['ingredient_name']: {'measure': dish['measure'], 'quantity': persons}
+                }
+                print(result)
+        else:
+            print('Нет такого блюда')
+            return
+    
+get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
